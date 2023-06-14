@@ -1,18 +1,6 @@
 <?php
+include ('conn.php');
 session_start();
-$servername = "139.180.136.45";
-$username = "root";
-$password = "";
-$database = "water_wise";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Insert data into the database
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
