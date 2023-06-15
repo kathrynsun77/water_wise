@@ -1,12 +1,23 @@
 <?php
-include ('conn.php');
+$servername = "139.180.136.45";
+$username = "root";
+$password = "";
+$database = "water_wise";
 
-$email=$_SESSION['email'];
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$idUser = $_POST['id'];
+$idToInt=intval($idUser);
 
 $bill = "SELECT * FROM customer_bill
         JOIN customer ON customer.customer_id = customer_bill.customer_id
         JOIN users ON users.id = customer.user_id
-        WHERE users.email = '$email';";
+        WHERE users.id =$idToInt";
 
 $result = $conn->query($bill);
 
