@@ -16,7 +16,6 @@ $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-$_SESSION['email']=$email;
 
 $sql = "INSERT INTO users (fname, lname, uname, password, email, mobile, gender, user_type, user_status,photo) VALUES ('$fname','$lname','-','$password','$email',0,'-',3,1,'img_profile1.png')";
 $conn->query($sql);
