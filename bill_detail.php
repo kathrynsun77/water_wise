@@ -1,14 +1,23 @@
 <?php
-session_start();
-include ('conn.php');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "water_wise";
 
-$email=$_SESSION['email'];
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$idUser = $_POST['id'];
+$idToInt=intval($idUser);
 
 $bill = "SELECT pipe.pipe_name, pipe.meter FROM pipe 
-        JOIN household ON household.id_household=pipe.id_household
-        JOIN customer ON customer.customer_id=household.customer_id
+        JOIN customer ON customer.customer_id=pipe.customer_id
         JOIN users ON customer.user_id=users.id
-        WHERE users.email='$email'";
+        WHERE users.id='$idToInt'";
 
 $result = $conn->query($bill);
 
@@ -18,15 +27,12 @@ if ($result) {
     while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
-
     // Encode the data array as JSON
     $jsonResponse = json_encode($data);
-
     // Set the response headers
     header('Content-Type: application/json');
     // Allow cross-origin requests (if needed)
     header('Access-Control-Allow-Origin: *');
-
     // Send the JSON response
     echo $jsonResponse;
 } else {
@@ -34,5 +40,4 @@ if ($result) {
 }
 
 $conn->close();
-
 ?>

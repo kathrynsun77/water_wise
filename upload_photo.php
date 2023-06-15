@@ -1,6 +1,17 @@
 <?php
-session_start();
-include ('conn.php');
+//$servername = "139.180.136.45";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "water_wise";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 //retrieve photo from flutter
 $photo_name = $_POST['customer_photo'];

@@ -1,5 +1,5 @@
 <?php
-$servername = "139.180.136.45";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $database = "water_wise";
@@ -19,7 +19,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['email']=$username;
 
     // Query to validate the user's credentials
-    $sql = "SELECT * FROM users WHERE email = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM users JOIN customer on users.id=customer.user_id 
+            WHERE users.email = '$username' AND users.password = '$password'";
     $result = $conn->query($sql);
 
     // Check if the query returned any rows
