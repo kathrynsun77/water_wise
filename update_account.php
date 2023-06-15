@@ -41,7 +41,6 @@ if ($resulttt->num_rows > 0) {
         $data[] = $getData;
     }
     // Login successful
-    header("Content-Type: application/json");
     echo json_encode(array(
         "message"=>"Success",
         "data"=>$data[0],
