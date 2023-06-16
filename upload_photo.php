@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 //retrieve photo from flutter
-$photo_name = $_POST['customer_photo'];
+$photo_name = $_POST['photo'];
 $idUser = $_POST['id'];
 $idInt = intval($idUser);
 
