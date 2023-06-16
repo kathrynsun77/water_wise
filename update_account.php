@@ -1,6 +1,6 @@
 <?php
-//$servername = "139.180.136.45";
-$servername = "localhost";
+$servername = "139.180.136.45";
+// $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "water_wise";
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $id = $_POST['id'];
-$idInt=intval($id);
+$idInt = intval($id);
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
@@ -23,7 +23,7 @@ $sql = "UPDATE users SET
         fname = '$fname',
         lname = '$lname',
         password = '$password',
-        email = '$email',
+        email = '$email'
         WHERE id = '$idInt'";
 
 $conn->query($sql);
@@ -42,16 +42,15 @@ if ($resulttt->num_rows > 0) {
     }
     // Login successful
     echo json_encode(array(
-        "message"=>"Success",
-        "data"=>$data[0],
+        "message" => "Success",
+        "data" => $data[0],
     ));
 } else {
     // Login failed
     echo json_encode(array(
-        "message"=>"Failed",
+        "message" => "Failed",
     ));
-
 }
+
 $conn->close();
 ?>
-

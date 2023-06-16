@@ -1,5 +1,6 @@
 <?php
-$servername = "localhost";
+// $servername = "localhost";
+$servername = "139.180.136.45";
 $username = "root";
 $password = "";
 $database = "water_wise";
@@ -16,7 +17,6 @@ if ($conn->connect_error) {
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $username = $_POST['email'];
     $password = $_POST['password'];
-    $_SESSION['email']=$username;
 
     // Query to validate the user's credentials
     $sql = "SELECT * FROM users JOIN customer on users.id=customer.user_id 

@@ -1,5 +1,6 @@
 <?php
-$servername = "localhost";
+// $servername = "localhost";
+$servername = "139.180.136.45";
 $username = "root";
 $password = "";
 $database = "water_wise";

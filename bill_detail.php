@@ -1,5 +1,6 @@
 <?php
-$servername = "localhost";
+// $servername = "localhost";
+$servername = "139.180.136.45";
 $username = "root";
 $password = "";
 $database = "water_wise";
@@ -14,7 +15,7 @@ if ($conn->connect_error) {
 $idUser = $_POST['id'];
 $idToInt=intval($idUser);
 
-$bill = "SELECT pipe.pipe_name, pipe.meter FROM pipe 
+$bill = "SELECT * FROM pipe 
         JOIN customer ON customer.customer_id=pipe.customer_id
         JOIN users ON customer.user_id=users.id
         WHERE users.id='$idToInt'";
