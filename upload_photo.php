@@ -15,14 +15,8 @@ if ($conn->connect_error) {
 
 //retrieve photo from flutter
 $photo_name = $_POST['customer_photo'];
-
-$email=$_SESSION['email'];
-
-$selectId="SELECT id from users where email='$email'";
-$result = $conn->query($selectId);
-$row = $result->fetch_assoc();
-$idValue = $row['id'];
-$idInt = intval($idValue);
+$idUser = $_POST['id'];
+$idInt = intval($idUser);
 
 $sql="UPDATE customer SET customer_photo='$photo_name' WHERE user_id=$idInt";
 if ($conn->query($sql) === TRUE) {
