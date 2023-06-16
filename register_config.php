@@ -30,7 +30,6 @@ $idInt = intval($idValue);
 $sql2 = "INSERT INTO customer (user_id, region, e_credit, default_payment_method_type) VALUES ($idInt,'-',0,0);";
 $conn->query($sql2);
 
-
     $sql3 = "SELECT * FROM users 
     JOIN customer ON customer.user_id=users.id 
     WHERE users.id=$idInt";
