@@ -21,13 +21,14 @@ $number = $_POST['number'];
 $month = $_POST['month'];
 $cvv = $_POST['cvv'];
 $type=intval($_POST['type']);
+$bank_name=$_POST['bank_name'];
 
-$sql = "INSERT INTO card_payment (card_name,card_month,card_year,card_cvv,card_type,customer_id) 
-        VALUES ('$number','$month',0,$cvv,$type,$idInt)";
+$sql = "INSERT INTO payment (bank_name,card_name,card_month,card_cvv,card_type,customer_id) 
+        VALUES ('$bank_name','$number','$month',$cvv,$type,$idInt)";
 $conn->query($sql);
 
 
-$sql3 = "SELECT * FROM card_payment WHERE customer_id=$idInt";
+$sql3 = "SELECT * FROM payment WHERE customer_id=$idInt";
 
 $resulttt = $conn->query($sql3);
 

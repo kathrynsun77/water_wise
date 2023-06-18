@@ -16,10 +16,10 @@ $idCard = intval($_POST['card-id']);
 $idInt = intval($_POST['cust-id']);
 
 // Query to validate the user's credentials
-$sql = "DELETE FROM payment_card WHERE card_payment_id=$idCard";
+$sql = "DELETE FROM payment WHERE card_payment_id=$idCard";
 $result = $conn->query($sql);
 
-$sql2="SELECT * FROM card_payment WHERE customer_id=$idInt";
+$sql2="SELECT * FROM payment WHERE customer_id=$idInt";
 $res= $conn->query($sql2);
 
 // Check if the query returned any rows

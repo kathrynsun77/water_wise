@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $idUser = $_POST['cust-id'];
 $idInt=intval($idUser);
 
-$bill = "SELECT * FROM card_payment WHERE customer_id =$idInt";
+$bill = "SELECT * FROM payment WHERE customer_id =$idInt";
 
 $result = $conn->query($bill);
 
