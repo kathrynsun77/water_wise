@@ -1,6 +1,6 @@
 <?php
-$servername = "139.180.136.45";
 // $servername = "localhost";
+$servername = "139.180.136.45";
 $username = "root";
 $password = "";
 $database = "water_wise";
@@ -13,17 +13,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//retrieve photo from flutter
-$photo_name = $_POST['photo'];
-$idUser = $_POST['id'];
-$idInt = intval($idUser);
+$idUser = $_POST['cust-id'];
+$idInt=intval($idUser);
+$idCard = intval($_POST['card-id']);
 
-$sql="UPDATE customer SET customer_photo='$photo_name' WHERE user_id=$idInt";
-$conn->query($sql);
+
+$setting = "UPDATE customer SET default_payment_method_type=$idCard WHERE customer_id =$idInt";
+$conn->query($setting);
 
 $sql3 = "SELECT * FROM users 
     JOIN customer ON customer.user_id=users.id 
-    WHERE users.id=$idInt";
+    WHERE customer.customer_id=$idInt";
 
 $resulttt = $conn->query($sql3);
 
@@ -49,6 +49,3 @@ $conn->close();
 
 
 $conn->close();
-
-
-?>

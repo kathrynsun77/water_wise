@@ -16,6 +16,7 @@ $idUser = $_POST['cust-id'];
 $amount = intval($_POST['amount']);
 $usage = intval($_POST['usage']);
 $idInt=intval($idUser);
+//$payment_type=intval($_POST['payment-id']);
 $mysqltime = date('Y-m-d H:i:s');
 
 // Query to validate the user's credentials
