@@ -46,6 +46,3 @@ if ($resulttt->num_rows > 0) {
 }
 
 $conn->close();
-
-
-$conn->close();
