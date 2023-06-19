@@ -18,7 +18,7 @@ $lname = $_POST['lname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$sql = "INSERT INTO users (fname, lname, uname, password, email, mobile, gender, user_type, user_status,photo) VALUES ('$fname','$lname','-','$password','$email',0,'-',3,1,'img_profile1.png')";
+$sql = "INSERT INTO users (fname, lname, uname, password, email, mobile, gender, user_type, user_status,photo) VALUES ('$fname','$lname','-','$password','$email',0,'-',3,1,'/data/user/0/com.watersupply.app/cache/IMG_20230619_190340_875.png')";
 $conn->query($sql);
 
 $selectId = "SELECT id FROM users WHERE email='$email';";

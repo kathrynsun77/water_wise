@@ -1,6 +1,5 @@
 <?php
 $servername = "139.180.136.45";
-// $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "water_wise";
@@ -13,12 +12,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//retrieve photo from flutter
+// Retrieve photo from Flutter
 $photo_name = $_POST['photo'];
 $idUser = $_POST['id'];
 $idInt = intval($idUser);
 
-$sql="UPDATE customer SET customer_photo='$photo_name' WHERE user_id=$idInt";
+$sql = "UPDATE users SET photo='$photo_name' WHERE id=$idInt";
 $conn->query($sql);
 
 $sql3 = "SELECT * FROM users 
@@ -46,9 +45,4 @@ if ($resulttt->num_rows > 0) {
 }
 
 $conn->close();
-
-
-$conn->close();
-
-
 ?>
