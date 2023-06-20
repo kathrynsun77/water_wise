@@ -29,7 +29,7 @@ $result = $conn->query($sql);
 //
 //$result = $conn->query($sql3);
 
-$sql2="SELECT * FROM transaction WHERE customer_id=$idInt";
+$sql2="SELECT * FROM transaction WHERE customer_id=$idInt LIMIT 1";
 $res= $conn->query($sql2);
 
 // Check if the query returned any rows
