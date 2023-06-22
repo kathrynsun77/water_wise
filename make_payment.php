@@ -13,24 +13,28 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $idUser = $_POST['cust-id'];
-$amount = $_POST['amount'];
-$usage = $_POST['usage'];
+$amount = intval($_POST['amount']);
+$usage = intval($_POST['usage']);
 $idInt=intval($idUser);
-//$payment_type=intval($_POST['payment-id']);
+$invoice = $_POST['invoice'];
+$payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
 
 // Query to validate the user's credentials
-$sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount) 
-            VALUES ($idInt,1,'".date("Y-m-d H:i:s")."','$amount',0,'$usage')";
+$sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount,invoice_number) 
+            VALUES ($idInt,1,'".date("Y-m-d H:i:s")."',$amount,'$payment_type',$usage,'$invoice')";
 
 $result = $conn->query($sql);
 
-//$sql3 = "UPDATE customer_bill SET bill_status=2 WHERE invoice=";
-//
-//$result = $conn->query($sql3);
+$sql3 = "UPDATE customer_bill SET bill_status=1 WHERE inovice_number='$invoice'";
+$conn->query($sql3);
 
-$sql2="SELECT * FROM transaction WHERE customer_id=$idInt LIMIT 1";
+$sql2="SELECT * FROM transaction WHERE customer_id=$idInt";
 $res= $conn->query($sql2);
+
+//UPDATE your_table_name
+//SET meter_value = REPLACE(meter_value, '|', '0')
+//WHERE customer_id = 3;
 
 // Check if the query returned any rows
 if ($res->num_rows > 0) {
