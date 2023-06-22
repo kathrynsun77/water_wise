@@ -17,6 +17,8 @@ if ($conn->connect_error) {
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $username = $_POST['email'];
     $password = $_POST['password'];
+//    $username = 'b@b.com';
+//    $password = '1234';
 
     // Query to validate the user's credentials
     $sql = "SELECT * FROM users JOIN customer on users.id=customer.user_id 
