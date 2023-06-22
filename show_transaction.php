@@ -1,5 +1,4 @@
 <?php
-// $servername = "localhost";
 $servername = "139.180.136.45";
 $username = "root";
 $password = "";
@@ -13,11 +12,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $idUser = $_POST['cust-id'];
-$idToInt=intval($idUser);
+$idInt=intval($idUser);
 
-$trans = "SELECT * FROM transaction WHERE customer_id='$idToInt'";
+$sql3 = "SELECT * FROM transaction  WHERE customer_id=$idInt";
 
-$result = $conn->query($trans);
+$result = $conn->query($sql3);
 
 if ($result) {
     // Fetch data from the query result and store it in an array
