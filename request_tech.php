@@ -17,12 +17,12 @@ $idInt=intval($idUser);
 $mysqltime = date('Y-m-d H:i:s');
 
     // Query to validate the user's credentials
-    $sql = "INSERT INTO job (employee_id,customer_id,job_date,job_start_time,job_end_time,job_description,job_status) 
-            VALUES (0,$idInt,'".date("Y-m-d H:i:s")."','-','-','pipe leaks',0)";
+    $sql = "INSERT INTO service (customer_id,service_date,service_description,service_status) 
+            VALUES ($idInt,'".date("Y-m-d H:i:s")."','pipe leaks',1)";
 
     $result = $conn->query($sql);
 
-    $sql2="SELECT * FROM job WHERE customer_id=$idInt";
+    $sql2="SELECT * FROM service WHERE customer_id=$idInt";
     $res= $conn->query($sql2);
 
     // Check if the query returned any rows
