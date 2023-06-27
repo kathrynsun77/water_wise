@@ -1,0 +1,13 @@
+{
+    "name": "waterwise/api",
+    "description": "aa",
+    "require": {
+        "monolog/monolog": "^3.4",
+        "setasign/fpdf": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Waterwise\\Api\\": "src/"
+        }
+    }
+}
