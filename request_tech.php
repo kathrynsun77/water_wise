@@ -1,8 +1,13 @@
 <?php
-$servername = "sql12.freesqldatabase.com";
-$username = "sql12628993";
-$password = "vYNV8FFHMG";
-$database = "sql12628993";
+//$servername = "sql12.freesqldatabase.com";
+//$username = "sql12628993";
+//$password = "vYNV8FFHMG";
+//$database = "sql12628993";
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "water_wise";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -16,8 +21,8 @@ $idInt=intval($idUser);
 $mysqltime = date('Y-m-d H:i:s');
 
     // Query to validate the user's credentials
-    $sql = "INSERT INTO service (customer_id,service_date,service_description,service_status) 
-            VALUES ($idInt,'".date("Y-m-d H:i:s")."','pipe leaks',1)";
+    $sql = "INSERT INTO service (customer_id,service_date,service_description) 
+            VALUES ($idInt,'".date("Y-m-d H:i:s")."','pipe leaks')";
 
     $result = $conn->query($sql);
 

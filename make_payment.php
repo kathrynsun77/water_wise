@@ -1,9 +1,14 @@
 <?php
 // $servername = "localhost";
-$servername = "sql12.freesqldatabase.com";
-$username = "sql12628993";
-$password = "vYNV8FFHMG";
-$database = "sql12628993";
+//$servername = "sql12.freesqldatabase.com";
+//$username = "sql12628993";
+//$password = "vYNV8FFHMG";
+//$database = "sql12628993";
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "water_wise";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -32,9 +37,11 @@ $conn->query($sql3);
 $sql2="SELECT * FROM transaction WHERE customer_id=$idInt";
 $res= $conn->query($sql2);
 
-//UPDATE your_table_name
-//SET meter_value = REPLACE(meter_value, '|', '0')
-//WHERE customer_id = 3;
+$sql3 = "UPDATE pipe
+SET meter_value = REPLACE(meter_value, '|', '0')
+WHERE customer_id = $idInt";
+
+$conn->exec($sql3);
 
 // Check if the query returned any rows
 if ($res->num_rows > 0) {
