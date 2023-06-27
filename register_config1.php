@@ -48,10 +48,10 @@ if ($resulttt->num_rows > 0) {
     }
     // Login successful
     header("Content-Type: application/json");
-    echo "<html><body>",json_encode(array(
+    echo json_encode(array(
         "message" => "Success",
         "data" => $data[0],
-    )),"</html></body>";
+    ));
 } else {
     // Login failed
     echo json_encode(array(
