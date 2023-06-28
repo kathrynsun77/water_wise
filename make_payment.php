@@ -24,13 +24,23 @@ $idInt=intval($idUser);
 $invoice = $_POST['invoice'];
 $payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
-$newCreditValue = intval(($amount/2) * 0.1);
+$newCreditValue = intval($amount * 0.05 * 0.1);
+$point= intval($_POST['point']);
 
 // Query to validate the user's credentials
 $sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount,invoice_number) 
             VALUES ($idInt,1,'".date("Y-m-d H:i:s")."',$amount,'$payment_type',$usage,'$invoice')";
 
 $result = $conn->query($sql);
+
+if ($point > 0) {
+    $sql8 = "INSERT INTO transaction (customer_id, transaction_type, transaction_date, transaction_amount, payment_type, usage_amount, invoice_number) 
+        VALUES ($idInt, 2, '".date("Y-m-d H:i:s")."', $point, '-', 0, '-')";
+    $conn->query($sql8);
+
+    $sql9 = "UPDATE points SET total_point = 0 WHERE customer_id = $idInt";
+    $conn->query($sql9);
+}
 
 $sql3 = "UPDATE customer_bill SET bill_status=1 WHERE inovice_number='$invoice'";
 $conn->query($sql3);

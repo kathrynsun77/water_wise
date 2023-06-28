@@ -20,7 +20,8 @@ $idUser = $_POST['cust-id'];
 $idInt=intval($idUser);
 $invoice = $_POST['invoice'];
 
-$sql3 = "SELECT * FROM customer_bill JOIN transaction ON transaction.invoice_number=customer_bill.inovice_number WHERE inovice_number='$invoice'";
+$sql3 = "SELECT * FROM customer_bill JOIN transaction ON transaction.invoice_number=customer_bill.inovice_number 
+            JOIN payment ON payment.card_payment_id=transaction.payment_type WHERE inovice_number='$invoice'";
 
 $result = $conn->query($sql3);
 
