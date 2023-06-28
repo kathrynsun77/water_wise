@@ -43,13 +43,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         } else {
             // Password does not match, login failed
             echo json_encode(array(
-                "message" => "Failed",
+                "message" => "Password does not match",
             ));
         }
     } else {
         // User not found, login failed
         echo json_encode(array(
-            "message" => "Failed",
+            "message" => "User not found",
         ));
     }
 }
