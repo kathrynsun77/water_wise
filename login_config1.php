@@ -29,7 +29,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $result = $conn->query($sql);
 
     // Check if the query returned any rows
-    if ($result->num_rows === 1) {
+    if ($result->num_rows >= 1) {
         $row = $result->fetch_assoc();
         $hashedPassword = $row['password'];
 

@@ -24,7 +24,7 @@ $idInt=intval($idUser);
 $invoice = $_POST['invoice'];
 $payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
-$newCreditValue = intval($amount * 0.1);
+$newCreditValue = intval(($amount/2) * 0.1);
 
 // Query to validate the user's credentials
 $sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount,invoice_number) 
