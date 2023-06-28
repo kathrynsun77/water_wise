@@ -24,7 +24,7 @@ $idInt=intval($idUser);
 $invoice = $_POST['invoice'];
 $payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
-$newCreditValue=$amount*0.1;
+$newCreditValue = intval($amount * 0.1);
 
 // Query to validate the user's credentials
 $sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount,invoice_number) 
@@ -44,8 +44,21 @@ WHERE customer_id = $idInt";
 
 $conn->query($sql5);
 
-$sql = "UPDATE customer SET `e_credit` = `e_credit` + $newCreditValue WHERE customer_id = $idInt";
-$conn->query($sql);
+
+// Check if the row with customer ID exists
+$sqlCheck = "SELECT customer_id FROM points WHERE customer_id = $idInt";
+$resultCheck = $conn->query($sqlCheck);
+
+if ($resultCheck->num_rows > 0) {
+    // Row exists, so run the update statement
+    $sql = "UPDATE points SET total_point = total_point + $newCreditValue WHERE customer_id = $idInt";
+    $conn->query($sql);
+} else {
+    // Row doesn't exist, so run the insert statement
+    $sql = "INSERT INTO points (total_point, customer_id) VALUES ($newCreditValue, $idInt)";
+    $conn->query($sql);
+}
+
 
 // Check if the query returned any rows
 if ($res->num_rows > 0) {
