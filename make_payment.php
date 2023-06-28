@@ -17,17 +17,12 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//$idUser = $_POST['cust-id'];
-//$amount = intval($_POST['amount']);
-//$usage = intval($_POST['usage']);
-//$idInt=intval($idUser);
-//$invoice = $_POST['invoice'];
-//$payment_type=$_POST['payment-id'];
-$amount = 200;
-$usage = 200;
-$idInt=1;
-$invoice = 'SGPW_1_2022_01_01';
-$payment_type=3;
+$idUser = $_POST['cust-id'];
+$amount = intval($_POST['amount']);
+$usage = intval($_POST['usage']);
+$idInt=intval($idUser);
+$invoice = $_POST['invoice'];
+$payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
 $newCreditValue=$amount*0.1;
 
