@@ -1,6 +1,6 @@
 {
     "name": "waterwise/api",
-    "description": "aa",
+    "description": "api of waterwise app",
     "require": {
         "monolog/monolog": "^3.4",
         "setasign/fpdf": "^1.8"
