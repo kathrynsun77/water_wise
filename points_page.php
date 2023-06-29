@@ -20,8 +20,8 @@ $idUser = $_POST['cust-id'];
 $idToInt=intval($idUser);
 
 $bill = "SELECT * FROM points 
-    JOIN transaction ON points.customer_id=transaction.customer_id 
-    WHERE customer_id='$idToInt'";
+    JOIN transaction ON points.customer_id = transaction.customer_id 
+    WHERE points.customer_id = '$idToInt'";
 
 $result = $conn->query($bill);
 
