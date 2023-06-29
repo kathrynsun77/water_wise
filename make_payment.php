@@ -48,9 +48,8 @@ $conn->query($sql3);
 $sql2="SELECT * FROM transaction WHERE customer_id=$idInt";
 $res= $conn->query($sql2);
 
-$sql5 = "UPDATE pipe
-SET meter_value = REPLACE(meter_value, '|', '0')
-WHERE customer_id = $idInt";
+$sql5 = "UPDATE pipe SET meter_value = 0 WHERE customer_id IN (
+  SELECT customer_id FROM pipe WHERE customer_id = $idInt )";
 
 $conn->query($sql5);
 
