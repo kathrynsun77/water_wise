@@ -63,10 +63,19 @@ if ($resultCheck->num_rows > 0) {
     // Row exists, so run the update statement
     $sql = "UPDATE points SET total_point = total_point + $newCreditValue WHERE customer_id = $idInt";
     $conn->query($sql);
+
+    $sql00 = "INSERT INTO transaction (customer_id, transaction_type, transaction_date, transaction_amount, payment_type, usage_amount, invoice_number) 
+        VALUES ($idInt, 3, '".date("Y-m-d H:i:s")."', $newCreditValue, '-', 0, '-')";
+    $conn->query($sql00);
+
 } else {
     // Row doesn't exist, so run the insert statement
     $sql = "INSERT INTO points (total_point, customer_id) VALUES ($newCreditValue, $idInt)";
     $conn->query($sql);
+
+    $sql00 = "INSERT INTO transaction (customer_id, transaction_type, transaction_date, transaction_amount, payment_type, usage_amount, invoice_number) 
+        VALUES ($idInt, 3, '".date("Y-m-d H:i:s")."', $newCreditValue, '-', 0, '-')";
+    $conn->query($sql00);
 }
 
 
