@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DownloadReport;
+use App\Http\Controllers\Api\fcmController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Route::get('/pdf', [DownloadReport::class, 'generatePdf']);
 Route::post('/pdf', [DownloadReport::class, 'generatePdf']);
+Route::post('/sendMessage', [fcmController::class, 'sendMessage']);
+
 
 
