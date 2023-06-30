@@ -17,14 +17,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $idUser = $_POST['cust-id'];
-$value = intval($_POST['value']);
+$value = $_POST['value'];
 $idToInt=intval($idUser);
 
 $sql = "UPDATE points SET total_point = total_point + $value WHERE customer_id = $idToInt";
 $conn->query($sql);
 
 $bill = "INSERT INTO transaction (customer_id, transaction_type, transaction_date, transaction_amount, payment_type, usage_amount, invoice_number) 
-        VALUES ($idToInt, 3, '".date("Y-m-d H:i:s")."', $value, '-', 0, '-')";
+        VALUES ($idToInt, 3, '".date("Y-m-d H:i:s")."','$value', '-', 0, '-')";
 
 $conn->query($bill);
 
