@@ -22,11 +22,12 @@ $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $sql = "UPDATE users SET 
         fname = '$fname',
         lname = '$lname',
-        password = '$password',
+        password = '$hashedPassword',
         email = '$email'
         WHERE id = '$idInt'";
 
