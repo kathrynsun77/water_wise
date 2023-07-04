@@ -12,7 +12,7 @@ class fcmController extends Controller
         $url="https://fcm.googleapis.com/fcm/send";
         $serverKey='AAAAm_dVqjY:APA91bFnHrboZik6rTMnUEisH7rtpoT5EZcEqMDsi6FXJ9w8cvSPPgXnDt5FAQOrzXRFS7Dc0vfhO4ic1i9VsGQ6PDcnEoxZpyaNXiRLCT2Ns5xUsKE4oUy3iFRB4tLqSvzdrtVvO_ml';
         $data=[
-            'registration_ids'=>['regis_ids'],
+            'registration_ids'=>['dnglZVtbSryLd2tQ6eTBqm:APA91bGOwPHJx27d6Vw1bXO2UxGI9GkZNsjVDAa8BvBgGbLJ4oYyqiBiURHqNVfyZlNwQq4JHhpFM36uEAPTPlcYhJjrHUHZRMn1qSvnJNVCCwHeO7CHqaktptPVm1vum28-queiDwJJ'],
             'notification'=>[
                 'title'=> $request->title,
                 'body'=> $request->body,
