@@ -72,7 +72,7 @@ class DownloadReport extends Controller
         // Generate PDF using the HTML content
         $pdf = PDF::loadHTML($html);
         // Generate a unique filename for the PDF
-        $filename = 'water_usage_' . $customerId . '.pdf';
+        $filename = 'water_usage' . '.pdf';
 
         // Save the PDF file locally
         $pdf->save(public_path('pdf/' . $filename));
