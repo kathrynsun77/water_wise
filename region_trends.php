@@ -26,7 +26,7 @@ $value = $row['region'];
 
 $sql3 = "SELECT AVG(customer_bill.amount) as avg_usage, customer_bill.bill_date FROM customer JOIN customer_bill ON customer.customer_id=customer_bill.customer_id
         WHERE customer.region='$value' GROUP BY customer_bill.bill_date
-        ORDER BY customer_bill.bill_date";
+        ORDER BY customer_bill.bill_date LIMIT 5";
 
 $result = $conn->query($sql3);
 

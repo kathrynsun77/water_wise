@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 $idUser = $_POST['cust-id'];
 $idInt=intval($idUser);
 
-$sql3 = "SELECT * FROM transaction WHERE customer_id=$idInt AND transaction_type=1 ORDER BY transaction_date DESC";
+$sql3 = "SELECT * FROM transaction WHERE customer_id=$idInt AND transaction_type=1 ORDER BY transaction_date LIMIT 5";
 
 $result = $conn->query($sql3);
 
