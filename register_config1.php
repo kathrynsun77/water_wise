@@ -39,6 +39,14 @@ $idInt = intval($idValue);
 $sql2 = "INSERT INTO customer (user_id, region, default_payment_method_type) VALUES ($idInt, '-', 0);";
 $conn->query($sql2);
 
+$custId = "SELECT customer_id FROM customer WHERE user_id=$idInt;";
+$res = $conn->query($custId);
+$roww = $res->fetch_assoc();
+$cust = intval($roww['customer_id']);
+
+$sql222 = "INSERT INTO points (total_point,customer_id,point_status) VALUES (0, $cust, 0);";
+$conn->query($sql222);
+
 $sql3 = "SELECT * FROM users 
     JOIN customer ON customer.user_id=users.id 
     WHERE users.id=$idInt";

@@ -31,7 +31,7 @@ $conn->query($bill);
 $sqll = "SELECT * FROM points 
     JOIN transaction ON points.customer_id = transaction.customer_id 
     WHERE points.customer_id = '$idToInt' AND transaction.transaction_type<>1 
-ORDER BY transaction.transaction_id DESC LIMIT 1";
+    ORDER BY transaction.transaction_id DESC LIMIT 1";
 
 $result = $conn->query($sqll);
 
