@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 $idUser = $_POST['cust-id'];
 $idToInt=intval($idUser);
 
-$bill = "SELECT * FROM points WHERE customer_id='$idToInt'";
+$bill = "SELECT * FROM points WHERE customer_id='$idToInt' ORDER BY created_at DESC LIMIT 1";
 
 $result = $conn->query($bill);
 

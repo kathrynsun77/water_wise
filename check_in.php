@@ -19,7 +19,9 @@ if ($conn->connect_error) {
 $idUser = $_POST['cust-id'];
 $value = $_POST['value'];
 $idToInt=intval($idUser);
-//$status = intval();
+$status = intval($_POST['status']);
+
+echo "$value, $status";
 
 $sql = "UPDATE points SET total_point = total_point + $value WHERE customer_id = $idToInt";
 $conn->query($sql);
