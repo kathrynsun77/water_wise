@@ -23,7 +23,7 @@ $status = intval($_POST['status']);
 
 echo "$value, $status";
 
-$sql = "UPDATE points SET total_point = total_point + $value WHERE customer_id = $idToInt";
+$sql = "UPDATE points SET total_point = total_point + $value , point_status=$status WHERE customer_id = $idToInt";
 $conn->query($sql);
 
 $bill = "INSERT INTO transaction (customer_id, transaction_type, transaction_date, transaction_amount, payment_type, usage_amount, invoice_number) 
