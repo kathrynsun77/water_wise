@@ -19,6 +19,10 @@ if ($conn->connect_error) {
 $idUser = $_POST['cust-id'];
 $idInt=intval($idUser);
 $mysqltime = date('Y-m-d H:i:s');
+$pipe = intval($_POST['pipe']);
+
+$sql2222 = "UPDATE pipe SET pending = $pipe WHERE customer_id = $idInt";
+$conn->query($sql2222);
 
     // Query to validate the user's credentials
     $sql = "INSERT INTO service (customer_id,service_date,service_description) 
