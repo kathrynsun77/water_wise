@@ -21,7 +21,7 @@ $idInt=intval($idUser);
 $mysqltime = date('Y-m-d H:i:s');
 $pipe = intval($_POST['pipe']);
 
-$sql2222 = "UPDATE pipe SET pending = $pipe WHERE customer_id = $idInt";
+$sql2222 = "UPDATE pipe SET pending = 1 WHERE customer_id = $idInt AND pipe_id=$pipe";
 $conn->query($sql2222);
 
     // Query to validate the user's credentials
