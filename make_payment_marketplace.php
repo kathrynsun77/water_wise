@@ -29,7 +29,7 @@ $point= intval($_POST['point']);
 
 //insert transaction
 $sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount,invoice_number) 
-            VALUES ($idInt,0,'".date("Y-m-d H:i:s")."',$amount,'$payment_type',$usage,'$invoice')";
+            VALUES ($idInt,1,'".date("Y-m-d H:i:s")."',$amount,'$payment_type',$usage,'$invoice')";
 $result = $conn->query($sql);
 
 //if reedem point
@@ -43,7 +43,7 @@ if ($point > 0) {
 }
 
 //insert into order
-$sql3 = "INSERT INTO orders (customer_id,amount) VALUES ($idInt,$amount)";
+$sql3 = "INSERT INTO orders (customer_id,amount,tracking_num,delivery_id) VALUES ($idInt,$amount,'-',0)";
 $conn->query($sql3);
 
 // Retrieve the last inserted order_id
