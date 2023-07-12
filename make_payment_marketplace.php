@@ -21,7 +21,9 @@ $idUser = $_POST['cust-id'];
 $idInt=intval($idUser);
 $amount = intval($_POST['amount']);
 $usage = 0;
-$invoice = "-";
+$today = date("Ymd");
+$rand = sprintf("%04d", rand(0,9999));
+$invoice = $today . $rand;
 $payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
 $newCreditValue = intval($amount * 0.05 * 0.1);
@@ -44,7 +46,7 @@ if ($point > 0) {
 }
 
 //insert into order
-$sql3 = "INSERT INTO orders (customer_id,amount,tracking_number,delivery_id) VALUES ($idInt,$amount,'-',$address)";
+$sql3 = "INSERT INTO orders (customer_id,amount,tracking_number,delivery_id,order_number) VALUES ($idInt,$amount,'-',$address,'$invoice')";
 $conn->query($sql3);
 
 // Retrieve the last inserted order_id
