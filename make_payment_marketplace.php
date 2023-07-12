@@ -83,7 +83,7 @@ if ($resultCheck->num_rows > 0) {
 $sqlDel = "DELETE FROM cart WHERE customer_id=$idInt";
 $conn->query($sqlDel);
 
-$sql2="SELECT * FROM transaction WHERE customer_id=$idInt";
+$sql2="SELECT * FROM transaction WHERE customer_id=$idInt ORDER BY transaction_id DESC LIMIT 3";
 $res= $conn->query($sql2);
 
 // Check if the query returned any rows
