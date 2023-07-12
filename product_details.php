@@ -21,6 +21,7 @@ $product = intval($_POST['product']);
 
 $bill = "SELECT * FROM seller 
     JOIN product ON seller.seller_id = product.seller_id
+    JOIN users ON users.id=seller.user_id
     WHERE product.product_status=1 AND product.product_id=$product";
 $result = $conn->query($bill);
 
