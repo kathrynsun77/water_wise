@@ -20,15 +20,16 @@ if ($conn->connect_error) {
 $idUser = $_POST['cust-id'];
 $idInt=intval($idUser);
 $amount = intval($_POST['amount']);
+$payment_type=$_POST['payment-id'];
+$point= intval($_POST['point']);
+$address= intval($_POST['address']);
 $usage = 0;
 $today = date("Ymd");
 $rand = sprintf("%04d", rand(0,9999));
 $invoice = $today . $rand;
-$payment_type=$_POST['payment-id'];
 $mysqltime = date('Y-m-d H:i:s');
 $newCreditValue = intval($amount * 0.05 * 0.1);
-$point= intval($_POST['point']);
-$address= intval($_POST['address']);
+
 
 //insert transaction
 $sql = "INSERT INTO transaction (customer_id,transaction_type,transaction_date,transaction_amount,payment_type,usage_amount,invoice_number) 
