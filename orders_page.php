@@ -18,8 +18,11 @@ if ($conn->connect_error) {
 }
 $idUser = intval($_POST['cust-id']);
 
-$sql3 = "SELECT * FROM orders JOIN transaction ON transaction.invoice_number=orders.order_number
-            WHERE orders.customer_id=$idUser";
+$sql3 = "SELECT * FROM orders 
+        JOIN transaction ON transaction.invoice_number=orders.order_number
+        JOIN payment ON transaction.payment_type=payment.card_payment_id
+        JOIN address ON orders.delivery_id=address.address_id 
+        WHERE orders.customer_id=$idUser";
 
 $result = $conn->query($sql3);
 
