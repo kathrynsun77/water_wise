@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route::get('/pdf', [DownloadReport::class, 'generatePdf']);
-Route::post('/pdf', [DownloadReport::class, 'generatePdf']);
+//Route::post('/pdf', [DownloadReport::class, 'generatePdf']);
 Route::post('/sendMessage', [fcmController::class, 'sendMessage']);
 
 
