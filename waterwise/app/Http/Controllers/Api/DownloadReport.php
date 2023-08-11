@@ -6,78 +6,61 @@ use App\Http\Controllers\Controller;
 use App\Models\pipe;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use mysqli;
 
 class DownloadReport extends Controller
 {
-    public function generatePdf(Request $request)
+    public function addNotif()
     {
-        // Get the cust-id from the POST request sent from Flutter
-        $customerId = intval($request->input('cust-id'));
-//        $customerId=1;
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "water_wise";
 
-        // Replace the following code with your SQL query logic
-        $results=pipe::where('customer_id',$customerId)->get();
+// Create connection
+        $conn = new mysqli($servername, $username, $password, $database);
 
-
-        // Generate PDF using the query results
-        // Generate the HTML content for the PDF
-        $html = '
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                    }
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin-bottom: 20px;
-                    }
-                    th, td {
-                        padding: 8px;
-                        text-align: left;
-                        border-bottom: 1px solid #ddd;
-                    }
-                </style>
-            </head>
-            <body>
-                <h1>Water Usage Report</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Pipe Name</th>
-                            <th>Leak Status</th>
-                            <th>Meter Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-
-        foreach ($results as $result) {
-            $html .= '
-                        <tr>
-                            <td>'.$result->pipe_name.'</td>
-                            <td>'.(intval($result->leak_status) === 1 ? 'No Leak' : 'Leaking').'</td>
-                            <td>'.$result->meter_value.'</td>
-                        </tr>';
+// Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
 
-        $html .= '
-                    </tbody>
-                </table>
-            </body>
-            </html>
-        ';
+        $idUser = $_POST['cust-id'];
+        $idInt=intval($idUser);
 
-        // Generate PDF using the HTML content
-        $pdf = PDF::loadHTML($html);
-        // Generate a unique filename for the PDF
-        $filename = 'water_usage' . '.pdf';
+// Insert data into the database
+        $title = $_POST['title'];
+        $body = $_POST['body'];
 
-        // Save the PDF file locally
-        $pdf->save(public_path('pdf/' . $filename));
 
-        // Return the file download response
-        return response()->download(public_path('pdf/' . $filename))->deleteFileAfterSend(true);
+        $sql = "INSERT INTO notification (notification_name,message,customer_id,status,url)
+        VALUES ('$title','$body', $idInt, 0, '')";
+        $conn->query($sql);
+
+
+        $sql3 = "SELECT * FROM notification WHERE customer_id=$idInt ORDER BY notification_date DESC";
+
+        $resulttt = $conn->query($sql3);
+
+// Check if the query returned any rows
+        if ($resulttt->num_rows > 0) {
+            $data = array();
+            while ($getData = $resulttt->fetch_assoc()) {
+                $data[] = $getData;
+            }
+            // Login successful
+            header("Content-Type: application/json");
+            return json_encode(array(
+                "message"=>"Success",
+                "data"=>$data[0],
+            ));
+        } else {
+            // Login failed
+            return json_encode(array(
+                "message"=>"Failed",
+            ));
+
+        }
+        $conn->close();
     }
 }

@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "id21099494_admin";
+$username = "u572492875_admin";
 $password = "Waterwise123*";
-$database = "id21099494_water_wise";
+$database = "u572492875_waterwise";
 //$servername = "localhost";
 //$username = "root";
 //$password = "";
