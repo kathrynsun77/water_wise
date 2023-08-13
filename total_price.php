@@ -1,21 +1,23 @@
 <?php
-$servername = "localhost";
-$username = "u572492875_admin";
-$password = "Waterwise123*";
-$database = "u572492875_waterwise";
+require_once 'conn.php';
 
 //$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$database = "water_wise";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+//$username = "u572492875_admin";
+//$password = "Waterwise123*";
+//$database = "u572492875_waterwise";
+//
+////$servername = "localhost";
+////$username = "root";
+////$password = "";
+////$database = "water_wise";
+//
+//// Create connection
+//$conn = new mysqli($servername, $username, $password, $database);
+//
+//// Check connection
+//if ($conn->connect_error) {
+//    die("Connection failed: " . $conn->connect_error);
+//}
 $idUser = intval($_POST['cust-id']);
 
 $sql2 = "SELECT SUM(cart.qty*product.product_price) as total FROM cart JOIN product ON product.product_id=cart.product_id WHERE cart.customer_id=$idUser";
